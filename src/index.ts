@@ -1,29 +1,29 @@
+import { MongoClient } from "./database/mongo";
 import { MongoGetDevicesRepository } from "./repositories/get-devices/mongo-get-devices";
 import { GetDevicesController } from "./Controllers/getDevices/get-devices";
 import express from "express";
 import { config } from "dotenv";
 
-config();
+const main = async () => {
+  config();
 
-const app = express();
-const port = process.env.PORT || 8000;
+  const app = express();
+  await MongoClient.connect();
+  const port = process.env.PORT || 8000;
 
-app.listen(port, () => {
-  console.log(" listening on port ", port);
-});
+  app.get("/devices", async (req, res) => {
+    const mongoGetDevicesRepository = new MongoGetDevicesRepository();
 
-app.get("/", (req, res) => {
-  res.send("Hello World");
-});
+    const getDevicesController = new GetDevicesController(
+      mongoGetDevicesRepository
+    );
 
-app.get("/devices", async (req, res) => {
-  const mongoGetDevicesRepository = new MongoGetDevicesRepository();
+    const { body, statusCode } = await getDevicesController.handleRequisition();
 
-  const getDevicesController = new GetDevicesController(
-    mongoGetDevicesRepository
-  );
+    res.send(body).status(statusCode);
+  });
 
-  const { body, statusCode } = await getDevicesController.handleRequisition();
+  app.listen(port, () => console.log(" listening on port", port));
+};
 
-  res.send(body).status(statusCode);
-});
+main();
