@@ -1,6 +1,7 @@
-import { IGetDevicesController, IGetDevicesRepository } from "./protocols";
+import { IController } from "./../protocols";
+import { IGetDevicesRepository } from "./protocols";
 
-export class GetDevicesController implements IGetDevicesController {
+export class GetDevicesController implements IController {
   constructor(private readonly getDevicesRepository: IGetDevicesRepository) {}
 
   async handleRequisition() {

@@ -1,12 +1,9 @@
+import { IController } from "./../protocols";
 import { Device } from "../../models/device";
 import { HttpRequest, HttpResponse } from "../protocols";
-import {
-  CreateDeviceParams,
-  ICreateDeviceController,
-  ICreateDeviceRepository,
-} from "./protocols";
+import { CreateDeviceParams, ICreateDeviceRepository } from "./protocols";
 
-export class CreateDeviceController implements ICreateDeviceController {
+export class CreateDeviceController implements IController {
   constructor(
     private readonly createDeviceRepository: ICreateDeviceRepository
   ) {}

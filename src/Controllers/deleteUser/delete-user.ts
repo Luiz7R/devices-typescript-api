@@ -1,9 +1,10 @@
+import { IController } from "./../protocols";
 import { MongoDeleteDeviceRepository } from "./../../repositories/delete-device/mongo-delete-device";
 import { Device } from "../../models/device";
 import { HttpRequest, HttpResponse } from "../protocols";
-import { IDeleteDeviceController, IDeleteDeviceRepository } from "./protocols";
+import { IDeleteDeviceRepository } from "./protocols";
 
-export class DeleteDeviceController implements IDeleteDeviceController {
+export class DeleteDeviceController implements IController {
   constructor(
     private readonly deleteDeviceRepository: IDeleteDeviceRepository
   ) {}

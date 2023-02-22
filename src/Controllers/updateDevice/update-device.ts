@@ -1,34 +1,31 @@
+import { IController } from "./../protocols";
 import { Device } from "../../models/device";
 import { HttpRequest, HttpResponse } from "../protocols";
-import {
-  IUpdateDeviceController,
-  IUpdateDeviceRepository,
-  UpdateDeviceParams,
-} from "./protocols";
+import { IUpdateDeviceRepository, UpdateDeviceParams } from "./protocols";
 
-export class UpdateDeviceController implements IUpdateDeviceController {
+export class UpdateDeviceController implements IController {
   constructor(
     private readonly updateDeviceRepository: IUpdateDeviceRepository
   ) {}
 
   async handleRequisition(
-    httpRequest: HttpRequest<any>
+    httpRequest: HttpRequest<UpdateDeviceParams>
   ): Promise<HttpResponse<Device>> {
     try {
       const id = httpRequest?.params?.id;
       const body = httpRequest?.body;
 
-      if (!id) {
-        return {
-          statusCode: 500,
-          body: " Missing device id.",
-        };
-      }
-
       if (!body) {
         return {
           statusCode: 500,
           body: " Missing fields.",
+        };
+      }
+
+      if (!id) {
+        return {
+          statusCode: 500,
+          body: " Missing device id.",
         };
       }
 
