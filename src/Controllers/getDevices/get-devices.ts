@@ -1,5 +1,5 @@
 import { Device } from "./../../models/device";
-import { ok, serverError } from "./../helpers";
+import { ok, serverError } from "../../helpers/helpers";
 import { HttpResponse, IController } from "./../protocols";
 import { IGetDevicesRepository } from "./protocols";
 

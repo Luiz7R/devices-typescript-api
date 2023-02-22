@@ -1,4 +1,4 @@
-import { badRequest, ok, serverError } from "./../helpers";
+import { badRequest, ok, serverError } from "../../helpers/helpers";
 import { IController } from "./../protocols";
 import { Device } from "../../models/device";
 import { HttpRequest, HttpResponse } from "../protocols";

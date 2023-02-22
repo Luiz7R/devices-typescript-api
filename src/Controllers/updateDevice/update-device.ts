@@ -1,9 +1,8 @@
-import { badRequest } from "./../helpers";
 import { IController } from "./../protocols";
 import { Device } from "../../models/device";
 import { HttpRequest, HttpResponse } from "../protocols";
 import { IUpdateDeviceRepository, UpdateDeviceParams } from "./protocols";
-import { ok, serverError } from "../helpers";
+import { ok, badRequest, serverError } from "../../helpers/helpers";
 
 export class UpdateDeviceController implements IController {
   constructor(
