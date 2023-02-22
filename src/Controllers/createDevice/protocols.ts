@@ -1,4 +1,11 @@
+import { HttpRequest, HttpResponse } from "./../protocols";
 import { Device } from "./../../models/device";
+
+export interface ICreateDeviceController {
+  handleRequisition(
+    httpRequest: HttpRequest<Device>
+  ): Promise<HttpResponse<Device>>;
+}
 
 export interface CreateDeviceParams {
   name: string;

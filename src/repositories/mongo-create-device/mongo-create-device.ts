@@ -5,7 +5,7 @@ import {
   ICreateDeviceRepository,
 } from "./../../Controllers/createDevice/protocols";
 
-export class MongoCreateDevice implements ICreateDeviceRepository {
+export class MongoCreateDeviceRepository implements ICreateDeviceRepository {
   async createDevice(params: CreateDeviceParams): Promise<Device> {
     const { insertedId } = await MongoClient.db
       .collection("devices")
