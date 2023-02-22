@@ -1,3 +1,5 @@
+import { DeleteDeviceController } from "./Controllers/deleteUser/delete-user";
+import { MongoDeleteDeviceRepository } from "./repositories/delete-device/mongo-delete-device";
 import { UpdateDeviceController } from "./Controllers/updateDevice/update-device";
 import { MongoUpdateDeviceRepository } from "./repositories/update-device/mongo-update-device";
 import { CreateDeviceController } from "./Controllers/createDevice/create-device";
@@ -56,6 +58,22 @@ const main = async () => {
     const { body, statusCode } = await updateDeviceController.handleRequisition(
       {
         body: req.body,
+        params: req.params,
+      }
+    );
+
+    res.status(statusCode).send(body);
+  });
+
+  app.delete("/device/:id", async (req, res) => {
+    const mongoDeleteDeviceRepository = new MongoDeleteDeviceRepository();
+
+    const deleteDeviceController = new DeleteDeviceController(
+      mongoDeleteDeviceRepository
+    );
+
+    const { body, statusCode } = await deleteDeviceController.handleRequisition(
+      {
         params: req.params,
       }
     );

@@ -6,7 +6,7 @@ import { IDeleteDeviceRepository } from "./../../Controllers/deleteUser/protocol
 export class MongoDeleteDeviceRepository implements IDeleteDeviceRepository {
   async deleteDevice(id: string): Promise<Device> {
     const device = await MongoClient.db
-      .collection<Omit<Device, "id">>("device")
+      .collection<Omit<Device, "id">>("devices")
       .findOne({ _id: new ObjectId(id) });
 
     if (!device) {
@@ -14,7 +14,7 @@ export class MongoDeleteDeviceRepository implements IDeleteDeviceRepository {
     }
 
     const { deletedCount } = await MongoClient.db
-      .collection("device")
+      .collection("devices")
       .deleteOne({ _id: new ObjectId(id) });
 
     if (!deletedCount) {
