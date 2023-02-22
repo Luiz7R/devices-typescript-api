@@ -1,7 +1,7 @@
 import { UpdateDeviceController } from "./Controllers/updateDevice/update-device";
 import { MongoUpdateDeviceRepository } from "./repositories/update-device/mongo-update-device";
 import { CreateDeviceController } from "./Controllers/createDevice/create-device";
-import { MongoCreateDeviceRepository } from "./repositories/mongo-create-device/mongo-create-device";
+import { MongoCreateDeviceRepository } from "./repositories/create-device/mongo-create-device";
 import { MongoClient } from "./database/mongo";
 import { MongoGetDevicesRepository } from "./repositories/get-devices/mongo-get-devices";
 import { GetDevicesController } from "./Controllers/getDevices/get-devices";

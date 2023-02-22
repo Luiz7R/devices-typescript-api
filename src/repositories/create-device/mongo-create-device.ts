@@ -1,9 +1,9 @@
-import { MongoClient } from "./../../database/mongo";
+import { MongoClient } from "../../database/mongo";
 import { Device } from "../../models/device";
 import {
   CreateDeviceParams,
   ICreateDeviceRepository,
-} from "./../../Controllers/createDevice/protocols";
+} from "../../Controllers/createDevice/protocols";
 
 export class MongoCreateDeviceRepository implements ICreateDeviceRepository {
   async createDevice(params: CreateDeviceParams): Promise<Device> {
