@@ -1,3 +1,4 @@
+import { MongoDevice } from "./../mongo-protocols";
 import { MongoClient } from "./../../database/mongo";
 import { Device } from "../../models/device";
 import {
@@ -18,7 +19,7 @@ export class MongoUpdateDeviceRepository implements IUpdateDeviceRepository {
     );
 
     const device = await MongoClient.db
-      .collection<Omit<Device, "id">>("devices")
+      .collection<MongoDevice>("devices")
       .findOne({ _id: new ObjectId(id) });
 
     if (!device) {
