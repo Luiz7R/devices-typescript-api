@@ -22,8 +22,6 @@ export class MongoDeleteDeviceRepository implements IDeleteDeviceRepository {
       throw new Error("Device not Deleted");
     }
 
-    const { _id, ...rest } = device;
-
-    return { id: _id.toHexString(), ...rest };
+    return MongoClient.mapId(device);
   }
 }

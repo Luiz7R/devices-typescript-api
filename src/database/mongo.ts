@@ -1,4 +1,6 @@
-import { MongoClient as Mongo, Db } from "mongodb";
+import { MongoDevice } from "./../repositories/mongo-protocols";
+import { Device } from "./../models/device";
+import { MongoClient as Mongo, Db, WithId } from "mongodb";
 
 export const MongoClient = {
   client: undefined as unknown as Mongo,
@@ -16,5 +18,11 @@ export const MongoClient = {
     this.db = db;
 
     console.log("connected to mongodb!");
+  },
+
+  mapId(device: WithId<MongoDevice>): Device {
+    const { _id, ...rest } = device;
+
+    return { id: _id.toHexString(), ...rest };
   },
 };

@@ -26,8 +26,6 @@ export class MongoUpdateDeviceRepository implements IUpdateDeviceRepository {
       throw new Error("Device not Updated");
     }
 
-    const { _id, ...rest } = device;
-
-    return { id: _id.toHexString(), ...rest };
+    return MongoClient.mapId(device);
   }
 }

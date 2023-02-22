@@ -20,8 +20,6 @@ export class MongoCreateDeviceRepository implements ICreateDeviceRepository {
       throw new Error("Device not Created");
     }
 
-    const { _id, ...rest } = device;
-
-    return { id: _id.toHexString(), ...rest };
+    return MongoClient.mapId(device);
   }
 }
