@@ -1,7 +1,9 @@
+import { badRequest } from "./../helpers";
 import { IController } from "./../protocols";
 import { Device } from "../../models/device";
 import { HttpRequest, HttpResponse } from "../protocols";
 import { IUpdateDeviceRepository, UpdateDeviceParams } from "./protocols";
+import { ok, serverError } from "../helpers";
 
 export class UpdateDeviceController implements IController {
   constructor(
@@ -10,36 +12,24 @@ export class UpdateDeviceController implements IController {
 
   async handleRequisition(
     httpRequest: HttpRequest<UpdateDeviceParams>
-  ): Promise<HttpResponse<Device>> {
+  ): Promise<HttpResponse<Device | string>> {
     try {
       const id = httpRequest?.params?.id;
       const body = httpRequest?.body;
 
       if (!body) {
-        return {
-          statusCode: 500,
-          body: " Missing fields.",
-        };
+        return badRequest(" Missing fields.");
       }
 
       if (!id) {
-        return {
-          statusCode: 500,
-          body: " Missing device id.",
-        };
+        return badRequest(" Missing device id.");
       }
 
       const device = await this.updateDeviceRepository.updateDevice(id, body);
 
-      return {
-        statusCode: 200,
-        body: device,
-      };
+      return ok<Device>(device);
     } catch (error) {
-      return {
-        statusCode: 500,
-        body: " Something went Wrong.",
-      };
+      return serverError();
     }
   }
 }
