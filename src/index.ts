@@ -1,3 +1,5 @@
+import { UpdateDeviceController } from "./Controllers/updateDevice/update-device";
+import { MongoUpdateDeviceRepository } from "./repositories/update-device/mongo-update-device";
 import { CreateDeviceController } from "./Controllers/createDevice/create-device";
 import { MongoCreateDeviceRepository } from "./repositories/mongo-create-device/mongo-create-device";
 import { MongoClient } from "./database/mongo";
@@ -38,6 +40,23 @@ const main = async () => {
     const { body, statusCode } = await createDeviceController.handleRequisition(
       {
         body: req.body,
+      }
+    );
+
+    res.status(statusCode).send(body);
+  });
+
+  app.patch("/device/:id", async (req, res) => {
+    const mongoUpdateDeviceRepository = new MongoUpdateDeviceRepository();
+
+    const updateDeviceController = new UpdateDeviceController(
+      mongoUpdateDeviceRepository
+    );
+
+    const { body, statusCode } = await updateDeviceController.handleRequisition(
+      {
+        body: req.body,
+        params: req.params,
       }
     );
 

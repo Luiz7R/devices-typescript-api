@@ -1,3 +1,4 @@
+import { HttpRequest, HttpResponse } from "./../protocols";
 import { Device } from "../../models/device";
 
 export interface UpdateDeviceParams {
@@ -5,6 +6,12 @@ export interface UpdateDeviceParams {
   temperature?: number;
   humidity?: number;
   luminosity?: number;
+}
+
+export interface IUpdateDeviceController {
+  handleRequisition(
+    httpRequest: HttpRequest<any>
+  ): Promise<HttpResponse<Device>>;
 }
 
 export interface IUpdateDeviceRepository {
