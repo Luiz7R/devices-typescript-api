@@ -82,6 +82,29 @@ const main = async () => {
   });
 
   app.listen(port, () => console.log(" listening on port", port));
+
+  const mqtt = require("mqtt");
+  const client = mqtt.connect("mqtt:127.0.0.1:1883");
+
+  client.on("connect", () => {
+    console.log("Connected to MQTT broker");
+    client.subscribe("deviceChannel");
+  });
+
+  client.on("message", async (topic: any, message: any) => {
+    const dataReceived = JSON.parse(message.toString()); // message.toString(); //JSON.parse(message.toString());
+    const { id, ...deviceParams } = dataReceived;
+    const mongoUpdateDeviceRepository = new MongoUpdateDeviceRepository();
+
+    const updateDeviceController = new UpdateDeviceController(
+      mongoUpdateDeviceRepository
+    );
+
+    await updateDeviceController.handleMQTTMessage({
+      body: deviceParams,
+      params: { id: id },
+    });
+  });
 };
 
 main();
