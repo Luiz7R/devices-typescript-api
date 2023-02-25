@@ -1,3 +1,4 @@
+import { app } from "./server";
 import { DeleteDeviceController } from "./Controllers/deleteUser/delete-user";
 import { MongoDeleteDeviceRepository } from "./repositories/delete-device/mongo-delete-device";
 import { UpdateDeviceController } from "./Controllers/updateDevice/update-device";
@@ -7,18 +8,15 @@ import { MongoCreateDeviceRepository } from "./repositories/create-device/mongo-
 import { MongoClient } from "./database/mongo";
 import { MongoGetDevicesRepository } from "./repositories/get-devices/mongo-get-devices";
 import { GetDevicesController } from "./Controllers/getDevices/get-devices";
-import express from "express";
 import { config } from "dotenv";
 
 const main = async () => {
   config();
 
-  const app = express();
-
-  app.use(express.json());
+  const port = process.env.PORT || 8000;
+  app.listen(port, () => console.log(" listening on port", port));
 
   await MongoClient.connect();
-  const port = process.env.PORT || 8000;
 
   app.get("/devices", async (req, res) => {
     const mongoGetDevicesRepository = new MongoGetDevicesRepository();
@@ -80,8 +78,6 @@ const main = async () => {
 
     res.status(statusCode).send(body);
   });
-
-  app.listen(port, () => console.log(" listening on port", port));
 
   const mqtt = require("mqtt");
   const client = mqtt.connect("mqtt:127.0.0.1:1883");

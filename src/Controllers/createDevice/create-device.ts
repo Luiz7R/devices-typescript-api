@@ -17,7 +17,20 @@ export class CreateDeviceController implements IController {
 
       for (const field of requiredFields) {
         if (!httpRequest?.body?.[field as keyof CreateDeviceParams]) {
-          return badRequest(`Field ${field} is required`);
+          if (!(field in httpRequest?.body!)) {
+            if (field == "name") {
+              return badRequest(`Missing name field`);
+            } else if (
+              requiredFields.some(
+                (requiredField) =>
+                  !httpRequest?.body?.[
+                    requiredField as keyof CreateDeviceParams
+                  ]
+              )
+            ) {
+              return badRequest(`Missing one or more required fields`);
+            }
+          }
         }
       }
 
