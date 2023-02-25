@@ -1,4 +1,3 @@
-import { HttpRequest, HttpResponse } from "./../protocols";
 import { Device } from "../../models/device";
 
 export interface UpdateDeviceParams {

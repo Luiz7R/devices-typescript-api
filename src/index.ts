@@ -1,3 +1,5 @@
+import { MongoGetDeviceRepository } from "./repositories/get-device/mongo-get-device";
+import { GetDeviceController } from "./Controllers/getDevice/get-device";
 import { app } from "./server";
 import { DeleteDeviceController } from "./Controllers/deleteUser/delete-user";
 import { MongoDeleteDeviceRepository } from "./repositories/delete-device/mongo-delete-device";
@@ -42,6 +44,20 @@ const main = async () => {
         body: req.body,
       }
     );
+
+    res.status(statusCode).send(body);
+  });
+
+  app.get("/device/:id", async (req, res) => {
+    const mongoGetDeviceRepository = new MongoGetDeviceRepository();
+
+    const getDevicesController = new GetDeviceController(
+      mongoGetDeviceRepository
+    );
+
+    const { body, statusCode } = await getDevicesController.handleRequisition({
+      params: req.params,
+    });
 
     res.status(statusCode).send(body);
   });
