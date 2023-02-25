@@ -11,3 +11,8 @@ export interface UpdateDeviceParams {
 export interface IUpdateDeviceRepository {
   updateDevice(id: string, params: UpdateDeviceParams): Promise<Device>;
 }
+
+export interface IUpdateDeviceRepositoryTest {
+  updateDevice(id: string, params: UpdateDeviceParams): Promise<Device>;
+  getDevice(id: string): Promise<Device>;
+}
