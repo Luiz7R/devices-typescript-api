@@ -1,4 +1,3 @@
-import { UpdateDeviceParams } from "./../Controllers/updateDevice/protocols";
 import { UpdateDeviceRepositoryInMemory } from "../repositories/update-device/update-device-in-memory";
 import { UpdateDeviceService } from "./UpdateDeviceService";
 

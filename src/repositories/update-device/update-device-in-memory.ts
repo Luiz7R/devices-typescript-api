@@ -7,11 +7,6 @@ import { Device } from "../../models/device";
 
 export class UpdateDeviceRepositoryInMemory implements IUpdateDeviceRepository {
   async updateDevice(id: string, params: UpdateDeviceParams): Promise<Device> {
-    // const genRanHex = (size: number) =>
-    //   [...Array(size)]
-    //     .map(() => Math.floor(Math.random() * 16).toString(16))
-    //     .join("");
-    // const id = genRanHex(40);
     const device = Object.assign(params);
 
     return device;
