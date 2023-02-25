@@ -21,33 +21,3 @@ describe("Test Route Create Device", () => {
     expect(statusCode).toBe(201);
   });
 });
-
-// describe("Create Device use case", () => {
-//   it("should be able to create a new device", async () => {
-//     await MongoClient.connect();
-
-//     const mongoCreateDeviceRepository = new MongoCreateDeviceRepository();
-
-//     const deviceParamsTest: CreateDeviceParams = {
-//       name: "Device Test I",
-//       temperature: 23.8,
-//       humidity: 40,
-//       luminosity: 10,
-//     };
-
-//     const createDeviceController = new CreateDeviceController(
-//       mongoCreateDeviceRepository
-//     );
-
-//     const { body, statusCode } = await createDeviceController.handleRequisition(
-//       {
-//         body: deviceParamsTest,
-//       }
-//     );
-//     console.log(body);
-//     console.log(statusCode);
-//     //expect(statusCode === 201).toBeTruthy();
-//     //expect(body as Device).toBeTruthy();
-//     // res.status(statusCode).send(body);
-//   });
-// });
