@@ -97,7 +97,7 @@
 			"response": []
 		},
 		{
-			"name": "Update Device Copy",
+			"name": "Delete Device",
 			"request": {
 				"method": "DELETE",
 				"header": [],
