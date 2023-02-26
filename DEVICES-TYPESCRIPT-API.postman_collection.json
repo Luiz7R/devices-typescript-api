@@ -1,0 +1,128 @@
+{
+	"info": {
+		"_postman_id": "0af82ea8-2714-46fc-8c8f-7398804cc0f2",
+		"name": "DEVICES-TYPESCRIPT-API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get Devices",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8000/devices",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"devices"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Device",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8000/devices",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"devices"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Device",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Air Conditioning\",\r\n    \"temperature\": 17.7,\r\n    \"humidity\": 71.2\r\n    // \"luminosity\": 0\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8000/device",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"device"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Device",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"temperature\": 17.7,\r\n    \"humidity\": 71.21\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8000/device/",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"device",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Device Copy",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"temperature\": 17.7,\r\n    \"humidity\": 71.21\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8000/device/",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"device",
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
