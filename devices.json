@@ -1,0 +1,17 @@
+[{
+  "_id": {
+    "$oid": "63f67a506d9a73aa245149df"
+  },
+  "name": "Air Conditioning",
+  "temperature": 22.5,
+  "humidity": 41.5,
+  "luminosity": 8.5
+},{
+  "_id": {
+    "$oid": "63f8f4a262c73651fea892d0"
+  },
+  "name": "Air Conditioning Room",
+  "temperature": 27.7,
+  "humidity": 40.2,
+  "luminosity": 10
+}]
